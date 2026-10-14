@@ -1,0 +1,138 @@
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sky-top: var(--sky-top);
+  --color-sky-mid: var(--sky-mid);
+  --color-sky-bottom: var(--sky-bottom);
+  --color-building: var(--building);
+  --color-window: var(--window);
+  --color-cheese: var(--cheese);
+  --font-display: "Fredoka", "Baloo 2", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.22 0.06 280);
+  --foreground: oklch(0.98 0.01 80);
+  --card: oklch(0.28 0.06 280);
+  --card-foreground: oklch(0.98 0.01 80);
+  --popover: oklch(0.28 0.06 280);
+  --popover-foreground: oklch(0.98 0.01 80);
+  --primary: oklch(0.78 0.18 60);
+  --primary-foreground: oklch(0.2 0.05 280);
+  --secondary: oklch(0.35 0.08 290);
+  --secondary-foreground: oklch(0.98 0.01 80);
+  --muted: oklch(0.3 0.05 280);
+  --muted-foreground: oklch(0.78 0.04 80);
+  --accent: oklch(0.82 0.18 80);
+  --accent-foreground: oklch(0.2 0.05 280);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.4 0.05 280);
+  --input: oklch(0.4 0.05 280);
+  --ring: oklch(0.78 0.18 60);
+
+  --sky-top: oklch(0.25 0.1 285);
+  --sky-mid: oklch(0.55 0.18 35);
+  --sky-bottom: oklch(0.78 0.18 70);
+  --building: oklch(0.15 0.04 285);
+  --window: oklch(0.88 0.18 90);
+  --cheese: oklch(0.82 0.18 85);
+
+  /* Hero artwork palette (navy frame, pokéball red, river blue, paper cream) */
+  --hero-navy: oklch(0.22 0.08 265);
+  --hero-red: oklch(0.62 0.21 28);
+  --hero-river: oklch(0.55 0.13 245);
+  --hero-cream: oklch(0.94 0.03 80);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-sunset {
+    background: linear-gradient(
+      to bottom,
+      var(--sky-top) 0%,
+      oklch(0.35 0.13 305) 30%,
+      var(--sky-mid) 65%,
+      var(--sky-bottom) 100%
+    );
+  }
+  .text-stroke-dark {
+    text-shadow:
+      0 2px 0 rgba(0,0,0,0.35),
+      0 4px 16px rgba(0,0,0,0.4);
+  }
+  .shadow-rat {
+    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.4), 0 4px 0 0 rgba(0,0,0,0.25);
+  }
+  @keyframes rat-breathe {
+    0%, 100% { transform: translate(-50%, 0) scale(1); }
+    50% { transform: translate(-50%, -6px) scale(1.02); }
+  }
+  .animate-rat-breathe { animation: rat-breathe 4.5s ease-in-out infinite; }
+  @keyframes window-twinkle {
+    0%, 100% { opacity: 0.95; filter: brightness(1); }
+    40% { opacity: 0.35; filter: brightness(0.7); }
+    70% { opacity: 1; filter: brightness(1.2); }
+  }
+  .animate-twinkle { animation: window-twinkle 5s ease-in-out infinite; }
+  @keyframes sun-pulse {
+    0%, 100% { opacity: 0.85; transform: translate(-50%, 0) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, 0) scale(1.08); }
+  }
+  .animate-sun-pulse { animation: sun-pulse 7s ease-in-out infinite; }
+  @keyframes rise-in {
+    0% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-rise-in { animation: rise-in 900ms ease-out both; }
+  @keyframes scene-fade-zoom {
+    0% { opacity: 0; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .animate-scene-in { animation: scene-fade-zoom 900ms ease-out both; }
+  @keyframes scene-out {
+    0% { opacity: 1; transform: scale(1); filter: blur(0); }
+    100% { opacity: 0; transform: scale(1.4); filter: blur(8px); }
+  }
+  .animate-scene-out { animation: scene-out 800ms ease-in both; }
+}
